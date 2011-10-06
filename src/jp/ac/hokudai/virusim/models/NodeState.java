@@ -1,8 +1,8 @@
-package net.giginet.virusim.models;
+package jp.ac.hokudai.virusim.models;
 
 public enum NodeState{
   Normal,
   Infection,
   Crisis,
   Immune
-};
+}

@@ -2,8 +2,8 @@
  *  Node.java 
  *  created by giginet on 2011/10/06
  */
-package net.giginet.virusim.models;
-import net.giginet.virusim.utils.*;
+package jp.ac.hokudai.virusim.models;
+import jp.ac.hokudai.virusim.utils.*;
 /**
  * @author giginet
  * 

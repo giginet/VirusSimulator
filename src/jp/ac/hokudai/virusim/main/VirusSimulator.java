@@ -2,7 +2,7 @@
  *  VirusSimulator.java 
  *  created by giginet on 2011/10/06
  */
-package net.giginet.virusim.main;
+package jp.ac.hokudai.virusim.main;
 
 /**
  * @author giginet

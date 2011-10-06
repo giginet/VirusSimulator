@@ -2,7 +2,7 @@
  *  Network.java 
  *  created by giginet on 2011/10/06
  */
-package net.giginet.virusim.models;
+package jp.ac.hokudai.virusim.models;
 
 /**
  * @author giginet
