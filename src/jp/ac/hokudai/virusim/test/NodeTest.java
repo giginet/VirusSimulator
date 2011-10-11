@@ -2,7 +2,7 @@
  *  NodeTest.java 
  *  created by giginet on 2011/10/06
  */
-package jp.ac.hokudai.virusim.tests;
+package jp.ac.hokudai.virusim.test;
 
 import static org.junit.Assert.*;
 
