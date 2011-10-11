@@ -19,12 +19,12 @@ public class SettingContainer{
   /**
    * ネットワーク中に初期生成するノードの数を指定します
    */
-  private final int NODE_COUNT = 1000;
+  private final int NODE_COUNT = 10000;
   
   /**
    * ネットワーク中に初期生成する感染状態のノードの数を指定します
    */
-  private final int INITIAL_VIRUS_NODE_COUNT = 1;
+  private final int INITIAL_VIRUS_NODE_COUNT = 10;
   
   /**
    * 初期状態のワクチン導入率を指定します。<br>
@@ -39,8 +39,8 @@ public class SettingContainer{
    * この発症率はユーザーのアクティブ率を擬似的に表したものです。<br>
    * 発症率が高い方が、頻繁にコンピュータを利用することを表します
    */
-  private final double MIN_CRISIS_RATE = 0.01;
-  private final double MAX_CRISIS_RATE = 0.1;
+  private final double MIN_CRISIS_RATE = 0.1;
+  private final double MAX_CRISIS_RATE = 0.2;
   
   /**
    * 発症したノードの感染発見率の最小値、最大値を指定します。<br>
@@ -49,8 +49,8 @@ public class SettingContainer{
    * この発見率はユーザーのセキュリティ意識を擬似的に表したものです。<br>
    * 発見率が高い方が、ウイルスの発症に気付き、対策を取りやすいことを表します。
    */
-  private final double MIN_DETECTION_RATE = 0.01;
-  private final double MAX_DETECTION_RATE = 0.1;
+  private final double MIN_DETECTION_RATE = 0.00001;
+  private final double MAX_DETECTION_RATE = 0.0;
   
   /**
    * ノードと隣接する他のノードの数を指定します。<br>
@@ -59,7 +59,7 @@ public class SettingContainer{
    * この隣接ノード数は電子メールを媒介とするウィルスを仮定したときに、ユーザーのメールの送信先の数を擬似的に表したものです<br>
    */
   private final int MIN_NEIGHBOR_NODE_COUNT = 1;
-  private final int MAX_NEIGHBOR_NODE_COUNT = 10;
+  private final int MAX_NEIGHBOR_NODE_COUNT = 100;
   
   /**
    * @return the shared

@@ -19,7 +19,7 @@ public class Node{
   private double       crisisRate;
   private double       detectionRate;
   private NodeState    state;
-  private NeighborList neighbors;
+  private NodeList neighbors;
   
   public Node(NodeState ns){
     init();
@@ -59,10 +59,12 @@ public class Node{
 
   private void init(){
     Random r = new Random();
+    SettingContainer settings = SettingContainer.getShared();
     this.primaryKey    = r.nextInt();
     this.vaccine       = true;
-    this.crisisRate    = r.nextGaussian();
-    this.detectionRate = r.nextGaussian();
+    this.crisisRate    = settings.getMinCrisisRate() + r.nextDouble()%(settings.getMaxCrisisRate()-settings.getMinCrisisRate());
+    this.detectionRate = settings.getMinDetectionRate() + r.nextDouble()%(settings.getMaxDetectionRate()-settings.getMinDetectionRate());
+    this.neighbors     = new NodeList();
   }
   
   /**
@@ -83,7 +85,10 @@ public class Node{
     if(state != NodeState.Infection) return;
     Iterator<Node> itr = neighbors.iterator();
     while(itr.hasNext()){
-      itr.next().setState(NodeState.Infection);
+      Node n = itr.next();
+      if(n.getState() == NodeState.Normal){
+        n.setState(NodeState.Infection);
+      }
     }
   }
 
@@ -118,7 +123,7 @@ public class Node{
   /**
    * @return the neighbors
    */
-  public NeighborList getNeighbors(){
+  public NodeList getNeighbors(){
     return neighbors;
   }
 

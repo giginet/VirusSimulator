@@ -1,7 +1,6 @@
 package jp.ac.hokudai.virusim.model;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import jp.ac.hokudai.virusim.util.*;
@@ -19,14 +18,14 @@ import java.util.Iterator;
  */
 public class Network{
   
-  private ArrayList<Node> nodes;
+  private NodeList nodes;
   
   /**
    * ネットワークを初期化します。コンストラクタには初期ノード数を渡します
    * @param nodeCount
    */
   public Network(int nodeCount){
-    nodes = new ArrayList<Node>();
+    nodes = new NodeList();
     Random r = new Random();
     SettingContainer settings = SettingContainer.getShared();
     // generate nodes
@@ -34,7 +33,7 @@ public class Network{
       NodeState ns = NodeState.Normal;
       if(i < settings.getInitialVirusNodeCount()){
         ns = NodeState.Infection;
-      }else if(r.nextGaussian() < settings.getInitialVaccineRate()){
+      }else if(r.nextDouble() < settings.getInitialVaccineRate()){
         ns = NodeState.Immune;
       }
       Node n = new Node(ns);
@@ -70,14 +69,22 @@ public class Network{
       Node n = itr.next();
       if(n.getState() == NodeState.Infection){
         // 感染状態の時、一定確率で隣接ノードを感染させる
-        if(r.nextGaussian() < n.getCrisisRate()){
+        if(r.nextDouble() < n.getCrisisRate()){
           n.influence();
         }
         // 感染状態の時、一定確率で免疫状態になる
-        if(r.nextGaussian() < n.getDetectionRate()){
+        if(r.nextDouble() < n.getDetectionRate()){
           n.immune();
         }
       }
     }
   }
+
+  /**
+   * @return the nodes
+   */
+  public NodeList getNodes(){
+    return nodes;
+  }
+  
 }
