@@ -40,4 +40,39 @@ public class Node{
     this.primaryKey = r.nextInt();
   }
 
+  /**
+   * @return the vaccine
+   */
+  public boolean isVaccine(){
+    return vaccine;
+  }
+
+  /**
+   * @return the crisisRate
+   */
+  public double getCrisisRate(){
+    return crisisRate;
+  }
+
+  /**
+   * @return the detectionRate
+   */
+  public double getDetectionRate(){
+    return detectionRate;
+  }
+
+  /**
+   * @return the state
+   */
+  public NodeState getState(){
+    return state;
+  }
+
+  /**
+   * @return the neighbors
+   */
+  public NeighborList getNeighbors(){
+    return neighbors;
+  }
+
 }
