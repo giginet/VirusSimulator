@@ -33,7 +33,7 @@ public class Network{
     for(int i=0;i<nodeCount;++i){
       NodeState ns = NodeState.Normal;
       if(i < settings.getInitialVirusNodeCount()){
-        ns = NodeState.Crisis;
+        ns = NodeState.Infection;
       }else if(r.nextGaussian() < settings.getInitialVaccineRate()){
         ns = NodeState.Immune;
       }
@@ -59,6 +59,7 @@ public class Network{
       }
     }
   }
+  
   /**
    * ネットワークの状態を一定時間動かして遷移させます
    */
@@ -67,19 +68,16 @@ public class Network{
     Random r = new Random();
     while(itr.hasNext()){
       Node n = itr.next();
-      if(n.getState() == NodeState.Crisis){
-        // 発症状態の時、隣接ノードを感染状態にする
-      }else if(n.getState() == NodeState.Infection){
-        // 感染状態の時、一定確率で発症状態に移行する
+      if(n.getState() == NodeState.Infection){
+        // 感染状態の時、一定確率で隣接ノードを感染させる
         if(r.nextGaussian() < n.getCrisisRate()){
-          n.setState(NodeState.Crisis);
-        }  
-      }
-      if(n.getState() == NodeState.Crisis || n.getState() == NodeState.Infection)
+          n.influence();
+        }
+        // 感染状態の時、一定確率で免疫状態になる
         if(r.nextGaussian() < n.getDetectionRate()){
           n.immune();
         }
       }
+    }
   }
-
 }

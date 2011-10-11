@@ -5,6 +5,8 @@ package jp.ac.hokudai.virusim.model;
  */
 
 import jp.ac.hokudai.virusim.util.*;
+
+import java.util.Iterator;
 import java.util.Random;
 /**
  * @author giginet
@@ -59,18 +61,30 @@ public class Node{
     Random r = new Random();
     this.primaryKey    = r.nextInt();
     this.vaccine       = true;
-    this.crisisRate    = 0;
-    this.detectionRate = 0;
+    this.crisisRate    = r.nextGaussian();
+    this.detectionRate = r.nextGaussian();
   }
   
   /**
    * 免疫状態に移行します
    */
   public void immune(){
+    if(state == NodeState.Immune) return;
     vaccine = true;
     detectionRate = 0;
     crisisRate = 0;
     state = NodeState.Immune;
+  }
+  
+  /**
+   * 自身が感染状態の時、隣接ノードを感染状態にします
+   */
+  public void influence(){
+    if(state != NodeState.Infection) return;
+    Iterator<Node> itr = neighbors.iterator();
+    while(itr.hasNext()){
+      itr.next().setState(NodeState.Infection);
+    }
   }
 
   /**
