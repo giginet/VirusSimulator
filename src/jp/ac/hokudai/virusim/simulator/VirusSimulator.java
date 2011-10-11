@@ -22,10 +22,10 @@ public class VirusSimulator{
     SettingContainer settings = SettingContainer.getShared();
     network = new Network(settings.getNodeCount());
     while(true){
-      network.run();
       System.out.println(log());
-      ++time;
       if(network.getNodes().getNodeStates(NodeState.Infection).isEmpty()) break;
+      network.run();
+      ++time;
     }
   }
   
