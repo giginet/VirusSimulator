@@ -19,25 +19,58 @@ public class Node{
   private NodeState    state;
   private NeighborList neighbors;
   
-  public Node(double crisisRate, double detectionRate){
+  public Node(NodeState ns){
     init();
-    this.vaccine       = false;
-    this.crisisRate    = crisisRate;
-    this.detectionRate = detectionRate;
-    this.state         = NodeState.Normal;
-  }
+    this.state = ns;
+    if(ns == NodeState.Immune){
+      immune();
+    }
+   }
   
-  public Node(){
-    init();
+  /* (non-Javadoc)
+   * @see java.lang.Object#hashCode()
+   */
+  @Override
+  public int hashCode(){
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + primaryKey;
+    return result;
+  }
+
+  /* (non-Javadoc)
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
+  @Override
+  public boolean equals(Object obj){
+    if(this == obj)
+      return true;
+    if(obj == null)
+      return false;
+    if(getClass() != obj.getClass())
+      return false;
+    Node other = (Node) obj;
+    if(primaryKey != other.primaryKey)
+      return false;
+    return true;
+  }
+
+  private void init(){
+    Random r = new Random();
+    this.primaryKey    = r.nextInt();
     this.vaccine       = true;
     this.crisisRate    = 0;
     this.detectionRate = 0;
-    this.state         = NodeState.Immune;
-   }
+  }
   
-  private void init(){
-    Random r = new Random();
-    this.primaryKey = r.nextInt();
+  /**
+   * 免疫状態に移行します
+   */
+  public void immune(){
+    vaccine = true;
+    detectionRate = 0;
+    crisisRate = 0;
+    state = NodeState.Immune;
   }
 
   /**
@@ -75,4 +108,10 @@ public class Node{
     return neighbors;
   }
 
+  /**
+   * @param state the state to set
+   */
+  public void setState(NodeState state){
+    this.state = state;
+  }
 }

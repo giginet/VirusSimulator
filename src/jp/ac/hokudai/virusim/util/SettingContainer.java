@@ -22,6 +22,11 @@ public class SettingContainer{
   private final int NODE_COUNT = 1000;
   
   /**
+   * ネットワーク中に初期生成する感染状態のノードの数を指定します
+   */
+  private final int INITIAL_VIRUS_NODE_COUNT = 1;
+  
+  /**
    * 初期状態のワクチン導入率を指定します。<br>
    * これはユーザーのセキュリティソフトのインストール率を擬似的に表したものです
    */
@@ -67,6 +72,12 @@ public class SettingContainer{
    */
   public int getNodeCount(){
     return NODE_COUNT;
+  }
+  /**
+   * @return the vIRUS_NODE_COUNT
+   */
+  public int getInitialVirusNodeCount(){
+    return INITIAL_VIRUS_NODE_COUNT;
   }
   /**
    * @return the iNITIAL_VACCINE_RATE
