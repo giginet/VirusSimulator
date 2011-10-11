@@ -1,8 +1,9 @@
+package jp.ac.hokudai.virusim.model;
 /**
  *  Virus.java 
  *  created by giginet on 2011/10/06
  */
-package jp.ac.hokudai.virusim.models;
+
 
 /**
  * @author giginet

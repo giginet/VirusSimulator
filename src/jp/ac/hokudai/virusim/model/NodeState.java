@@ -1,4 +1,5 @@
-package jp.ac.hokudai.virusim.models;
+package jp.ac.hokudai.virusim.model;
+
 
 public enum NodeState{
   Normal,

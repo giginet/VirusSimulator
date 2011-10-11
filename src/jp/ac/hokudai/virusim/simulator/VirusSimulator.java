@@ -1,14 +1,15 @@
+package jp.ac.hokudai.virusim.simulator;
 /**
- *  Network.java 
+ *  VirusSimulator.java 
  *  created by giginet on 2011/10/06
  */
-package jp.ac.hokudai.virusim.models;
+
 
 /**
  * @author giginet
  *
  */
-public class Network{
+public class VirusSimulator{
 
   /**
    * @param args

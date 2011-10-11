@@ -1,12 +1,13 @@
+package jp.ac.hokudai.virusim.util;
 /**
  *  NeighborContainer.java 
  *  created by giginet on 2011/10/06
  */
-package jp.ac.hokudai.virusim.utils;
+
 
 import java.util.ArrayList;
 
-import jp.ac.hokudai.virusim.models.Node;
+import jp.ac.hokudai.virusim.model.Node;
 
 /**
  * @author giginet
