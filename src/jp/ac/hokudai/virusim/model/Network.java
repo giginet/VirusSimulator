@@ -14,8 +14,10 @@ import jp.ac.hokudai.virusim.model.*;
  */
 public class Network{
   
+  private ArrayList<Node> nodes;
+  
   public Network(int nodeCount){
-    ArrayList<Node> nodes = new ArrayList<Node>();
+    nodes = new ArrayList<Node>();
     for(int i=0;i<nodeCount;++i){
       Node n = new Node();
       nodes.add(n);

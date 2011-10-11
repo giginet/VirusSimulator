@@ -20,6 +20,7 @@ public class Node{
   private NeighborList neighbors;
   
   public Node(double crisisRate, double detectionRate){
+    init();
     this.vaccine       = false;
     this.crisisRate    = crisisRate;
     this.detectionRate = detectionRate;
@@ -27,11 +28,16 @@ public class Node{
   }
   
   public Node(){
+    init();
     this.vaccine       = true;
     this.crisisRate    = 0;
     this.detectionRate = 0;
     this.state         = NodeState.Immune;
+   }
+  
+  private void init(){
     Random r = new Random();
+    this.primaryKey = r.nextInt();
   }
 
 }
