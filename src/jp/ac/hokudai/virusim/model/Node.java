@@ -19,8 +19,12 @@ public class Node{
   private double       crisisRate;
   private double       detectionRate;
   private NodeState    state;
-  private NodeList neighbors;
+  private NodeList     neighbors;
   
+  /**
+   * NodeをNodeStateの状態で初期化します
+   * @param ns Node状態
+   */
   public Node(NodeState ns){
     init();
     this.state = ns;
@@ -57,6 +61,9 @@ public class Node{
     return true;
   }
 
+  /**
+   * Node共通の初期化処理をします
+   */
   private void init(){
     Random r = new Random();
     SettingContainer settings = SettingContainer.getShared();

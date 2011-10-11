@@ -18,6 +18,9 @@ public class VirusSimulator{
   private Network network;
   int time = 0;
   
+  /**
+   * Simulatorを初期化します
+   */
   public VirusSimulator(){
     SettingContainer settings = SettingContainer.getShared();
     network = new Network(settings.getNodeCount());
@@ -29,6 +32,10 @@ public class VirusSimulator{
     }
   }
   
+  /**
+   * 現在の状況をロギングします
+   * @return 現在の状況をdumpした文字列
+   */
   private String log(){
     int countNormal    = network.getNodes().getNodeStates(NodeState.Normal).size();
     int countInfection = network.getNodes().getNodeStates(NodeState.Infection).size();

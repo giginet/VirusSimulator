@@ -17,6 +17,11 @@ public class NodeList extends ArrayList<Node>{
   
   private static final long serialVersionUID = 1L;
 
+  /**
+   * Nodeの中から、指定のNodeStateのNodeのみをArrayListで返します
+   * @param st NodeState
+   * @return ArrayList<Node>
+   */
   public ArrayList<Node> getNodeStates(NodeState st){
     ArrayList<Node> list = new ArrayList<Node>();
     Iterator<Node> itr = this.iterator();

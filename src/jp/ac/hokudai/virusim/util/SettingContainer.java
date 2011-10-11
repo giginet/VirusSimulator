@@ -62,6 +62,7 @@ public class SettingContainer{
   private final int MAX_NEIGHBOR_NODE_COUNT = 30;
   
   /**
+   * シミュレーター全体で共通の設定を返します
    * @return the shared
    */
   public static SettingContainer getShared(){

@@ -21,8 +21,8 @@ public class Network{
   private NodeList nodes;
   
   /**
-   * ネットワークを初期化します。コンストラクタには初期ノード数を渡します
-   * @param nodeCount
+   * ネットワークを初期化します
+   * @param nodeCount 初期ノード数
    */
   public Network(int nodeCount){
     nodes = new NodeList();
