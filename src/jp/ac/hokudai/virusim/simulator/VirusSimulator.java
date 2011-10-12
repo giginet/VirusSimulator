@@ -43,7 +43,6 @@ public class VirusSimulator{
   public static void main(String[] args){
     VirusSimulatorWindow window = new VirusSimulatorWindow("VirusSimulator");
     window.setVisible(true);
-    //new VirusSimulator();
   }
 
 }
