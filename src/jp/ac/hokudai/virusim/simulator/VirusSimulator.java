@@ -37,7 +37,6 @@ public class VirusSimulator{
     return String.format("%d %d %d %d", time, countNormal, countInfection, countImmune);
   }
   
-  
   /**
    * @param args
    */
