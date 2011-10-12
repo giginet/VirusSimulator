@@ -15,9 +15,10 @@ import java.util.Random;
 public class Node{
   
   private int          primaryKey;
-  private boolean      vaccine;
+  private boolean      influenced;
   private double       crisisRate;
   private double       detectionRate;
+  private double       afterDetectionRate;
   private NodeState    state;
   private NodeList neighbors;
   
@@ -61,9 +62,10 @@ public class Node{
     Random r = new Random();
     SettingContainer settings = SettingContainer.getShared();
     this.primaryKey    = r.nextInt();
-    this.vaccine       = true;
+    this.influenced    = false;
     this.crisisRate    = settings.getMinCrisisRate() + r.nextDouble()%(settings.getMaxCrisisRate()-settings.getMinCrisisRate());
     this.detectionRate = settings.getMinDetectionRate() + r.nextDouble()%(settings.getMaxDetectionRate()-settings.getMinDetectionRate());
+    this.afterDetectionRate = settings.getMinAfterDetectionRate() + r.nextDouble()%(settings.getMaxAfterDetectionRate()-settings.getMinAfterDetectionRate());
     this.neighbors     = new NodeList();
   }
   
@@ -72,7 +74,7 @@ public class Node{
    */
   public void immune(){
     if(state == NodeState.Immune) return;
-    vaccine = true;
+    influenced = true;
     detectionRate = 0;
     crisisRate = 0;
     state = NodeState.Immune;
@@ -90,13 +92,14 @@ public class Node{
         n.setState(NodeState.Infection);
       }
     }
+    influenced = true;
   }
 
   /**
-   * @return the vaccine
+   * @return the influenced
    */
-  public boolean isVaccine(){
-    return vaccine;
+  public boolean isInfluenced(){
+    return influenced;
   }
 
   /**
@@ -132,5 +135,12 @@ public class Node{
    */
   public void setState(NodeState state){
     this.state = state;
+  }
+
+  /**
+   * @return the afterDetectionRate
+   */
+  public double getAfterDetectionRate(){
+    return afterDetectionRate;
   }
 }
