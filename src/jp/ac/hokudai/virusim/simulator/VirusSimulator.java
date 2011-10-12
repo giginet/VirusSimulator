@@ -1,5 +1,6 @@
 package jp.ac.hokudai.virusim.simulator;
 
+import jp.ac.hokudai.virusim.gui.VirusSimulatorWindow;
 import jp.ac.hokudai.virusim.model.Network;
 import jp.ac.hokudai.virusim.model.NodeState;
 import jp.ac.hokudai.virusim.util.SettingContainer;
@@ -41,7 +42,9 @@ public class VirusSimulator{
    * @param args
    */
   public static void main(String[] args){
-    new VirusSimulator();
+    VirusSimulatorWindow window = new VirusSimulatorWindow("VirusSimulator");
+    window.setVisible(true);
+    //new VirusSimulator();
   }
 
 }
