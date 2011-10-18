@@ -43,11 +43,11 @@ public class Network{
     Iterator<Node> itr = nodes.iterator();
     while(itr.hasNext()){
       Node n = itr.next();
-      int neighborCount = settings.getMinNeighborNodeCount() + r.nextInt()%(settings.getMaxNeightborNodeCount() - settings.getMinNeighborNodeCount());
+      int neighborCount = settings.getMinNeighborNodeCount() + r.nextInt()%(settings.getMaxNeighborNodeCount() - settings.getMinNeighborNodeCount());
       if(neighborCount < 0){
         neighborCount = 0;
-      }else if(neighborCount > settings.getMaxNeightborNodeCount()){
-        neighborCount = settings.getMaxNeightborNodeCount();
+      }else if(neighborCount > settings.getMaxNeighborNodeCount()){
+        neighborCount = settings.getMaxNeighborNodeCount();
       }
       @SuppressWarnings("unchecked")
       ArrayList<Node> clone = (ArrayList<Node>)nodes.clone();

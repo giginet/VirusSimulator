@@ -19,18 +19,18 @@ public class SettingContainer{
   /**
    * ネットワーク中に初期生成するノードの数を指定します
    */
-  private final int NODE_COUNT = 20000;
+  private int nodeCount = 20000;
   
   /**
    * ネットワーク中に初期生成する感染状態のノードの数を指定します
    */
-  private final int INITIAL_VIRUS_NODE_COUNT = 10;
+  private int initialVirusNodeCount = 10;
   
   /**
    * 初期状態のワクチン導入率を指定します。<br>
    * これはユーザーのセキュリティソフトのインストール率を擬似的に表したものです
    */
-  private final double INITIAL_VACCINE_RATE = 0.01;
+  private double initialVaccineRate = 0.01;
   
   /**
    * 感染したノードの発症率の最小値、最大値を指定します。<br>
@@ -39,8 +39,8 @@ public class SettingContainer{
    * この発症率はユーザーのアクティブ率を擬似的に表したものです。<br>
    * 発症率が高い方が、頻繁にコンピュータを利用することを表します
    */
-  private final double MIN_CRISIS_RATE = 0.05;
-  private final double MAX_CRISIS_RATE = 0.2;
+  private double minCrisisRate = 0.05;
+  private double maxCrisisRate = 0.2;
   
   /**
    * 発症したノードの感染発見率の最小値、最大値を指定します。<br>
@@ -49,8 +49,8 @@ public class SettingContainer{
    * この発見率はユーザーのセキュリティ意識を擬似的に表したものです。<br>
    * 発見率が高い方が、ウイルスの発症に気付き、対策を取りやすいことを表します。
    */
-  private final double MIN_DETECTION_RATE = 0.0;
-  private final double MAX_DETECTION_RATE = 0.01;
+  private double minDetectionRate = 0.0;
+  private double maxDetectionRate = 0.01;
 
   /**
    * 他のノードを感染させた後のノードの感染発見率の最小値、最大値を指定します。<br>
@@ -60,8 +60,8 @@ public class SettingContainer{
    * 発見率が高い方が、ウイルスの発症に気付き、対策を取りやすいことを表します<br>
    * 通常は、発見率より事後発見率の方が高く設定されます。
    */
-  private final double MIN_AFTER_DETECTION_RATE = 0.1;
-  private final double MAX_AFTER_DETECTION_RATE = 0.2;
+  private double minAfterDetectionRate = 0.1;
+  private double maxAfterDetectionRate = 0.2;
   
   /**
    * ノードと隣接する他のノードの数を指定します。<br>
@@ -69,8 +69,8 @@ public class SettingContainer{
    * このノード数に応じて、重複無しでノードと他のノードとのコネクションが張られます<br>
    * この隣接ノード数は電子メールを媒介とするウィルスを仮定したときに、ユーザーのメールの送信先の数を擬似的に表したものです<br>
    */
-  private final int MIN_NEIGHBOR_NODE_COUNT = 1;
-  private final int MAX_NEIGHBOR_NODE_COUNT = 30;
+  private int minNeighborNodeCount = 1;
+  private int maxNeighborNodeCount = 30;
   
   /**
    * シミュレーター全体で共通の設定を返します
@@ -79,72 +79,159 @@ public class SettingContainer{
   public static SettingContainer getShared(){
     return shared;
   }
+
   /**
-   * @return the nODE_COUNT
+   * @return the nodeCount
    */
   public int getNodeCount(){
-    return NODE_COUNT;
+    return nodeCount;
   }
+
   /**
-   * @return the vIRUS_NODE_COUNT
+   * @param nodeCount the nodeCount to set
+   */
+  public void setNodeCount(int nodeCount){
+    this.nodeCount = nodeCount;
+  }
+
+  /**
+   * @return the initialVirusNodeCount
    */
   public int getInitialVirusNodeCount(){
-    return INITIAL_VIRUS_NODE_COUNT;
+    return initialVirusNodeCount;
   }
+
   /**
-   * @return the iNITIAL_VACCINE_RATE
+   * @param initialVirusNodeCount the initialVirusNodeCount to set
+   */
+  public void setInitialVirusNodeCount(int initialVirusNodeCount){
+    this.initialVirusNodeCount = initialVirusNodeCount;
+  }
+
+  /**
+   * @return the initialVaccineRate
    */
   public double getInitialVaccineRate(){
-    return INITIAL_VACCINE_RATE;
+    return initialVaccineRate;
   }
+
   /**
-   * @return the mIN_CRISIS_RATE
+   * @param initialVaccineRate the initialVaccineRate to set
+   */
+  public void setInitialVaccineRate(double initialVaccineRate){
+    this.initialVaccineRate = initialVaccineRate;
+  }
+
+  /**
+   * @return the minCrisisRate
    */
   public double getMinCrisisRate(){
-    return MIN_CRISIS_RATE;
+    return minCrisisRate;
   }
+
   /**
-   * @return the mAX_CRISIS_RATE
+   * @param minCrisisRate the minCrisisRate to set
+   */
+  public void setMinCrisisRate(double minCrisisRate){
+    this.minCrisisRate = minCrisisRate;
+  }
+
+  /**
+   * @return the maxCrisisRate
    */
   public double getMaxCrisisRate(){
-    return MAX_CRISIS_RATE;
+    return maxCrisisRate;
   }
+
   /**
-   * @return the mIN_DETECTION_RATE
+   * @param maxCrisisRate the maxCrisisRate to set
+   */
+  public void setMaxCrisisRate(double maxCrisisRate){
+    this.maxCrisisRate = maxCrisisRate;
+  }
+
+  /**
+   * @return the minDetectionRate
    */
   public double getMinDetectionRate(){
-    return MIN_DETECTION_RATE;
+    return minDetectionRate;
   }
+
   /**
-   * @return the mAX_DETECTION_RATE
+   * @param minDetectionRate the minDetectionRate to set
+   */
+  public void setMinDetectionRate(double minDetectionRate){
+    this.minDetectionRate = minDetectionRate;
+  }
+
+  /**
+   * @return the maxDetectionRate
    */
   public double getMaxDetectionRate(){
-    return MAX_DETECTION_RATE;
+    return maxDetectionRate;
   }
-  
+
   /**
-   * @return the mIN_AFTER_DETECTION_RATE
+   * @param maxDetectionRate the maxDetectionRate to set
+   */
+  public void setMaxDetectionRate(double maxDetectionRate){
+    this.maxDetectionRate = maxDetectionRate;
+  }
+
+  /**
+   * @return the minAfterDetectionRate
    */
   public double getMinAfterDetectionRate(){
-    return MIN_AFTER_DETECTION_RATE;
+    return minAfterDetectionRate;
   }
+
   /**
-   * @return the mAX_AFTER_DETECTION_RATE
+   * @param minAfterDetectionRate the minAfterDetectionRate to set
+   */
+  public void setMinAfterDetectionRate(double minAfterDetectionRate){
+    this.minAfterDetectionRate = minAfterDetectionRate;
+  }
+
+  /**
+   * @return the maxAfterDetectionRate
    */
   public double getMaxAfterDetectionRate(){
-    return MAX_AFTER_DETECTION_RATE;
+    return maxAfterDetectionRate;
   }
+
   /**
-   * @return the mIN_NEIGHBOR_NODE_COUNT
+   * @param maxAfterDetectionRate the maxAfterDetectionRate to set
+   */
+  public void setMaxAfterDetectionRate(double maxAfterDetectionRate){
+    this.maxAfterDetectionRate = maxAfterDetectionRate;
+  }
+
+  /**
+   * @return the minNeighborNodeCount
    */
   public int getMinNeighborNodeCount(){
-    return MIN_NEIGHBOR_NODE_COUNT;
+    return minNeighborNodeCount;
   }
+
   /**
-   * @return the mAX_NEIGHBOR_NODE_COUNT
+   * @param minNeighborNodeCount the minNeighborNodeCount to set
    */
-  public int getMaxNeightborNodeCount(){
-    return MAX_NEIGHBOR_NODE_COUNT;
+  public void setMinNeighborNodeCount(int minNeighborNodeCount){
+    this.minNeighborNodeCount = minNeighborNodeCount;
+  }
+
+  /**
+   * @return the maxNeighborNodeCount
+   */
+  public int getMaxNeighborNodeCount(){
+    return maxNeighborNodeCount;
+  }
+
+  /**
+   * @param maxNeighborNodeCount the maxNeighborNodeCount to set
+   */
+  public void setMaxNeighborNodeCount(int maxNeighborNodeCount){
+    this.maxNeighborNodeCount = maxNeighborNodeCount;
   }
   
 }
