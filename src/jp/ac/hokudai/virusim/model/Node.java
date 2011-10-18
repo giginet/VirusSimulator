@@ -101,6 +101,15 @@ public class Node{
     }
     influenced = true;
   }
+  
+  /**
+   * 他のノードと接続します
+   * @param other
+   */
+  public void connect(Node other){
+    if(this == other) return;
+    neighbors.add(other);
+  }
 
   /**
    * @return the influenced

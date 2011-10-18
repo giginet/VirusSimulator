@@ -7,6 +7,8 @@
  */
 package jp.ac.hokudai.virusim.util;
 
+import jp.ac.hokudai.virusim.model.GraphType;
+
 /**
  * @author giginet
  *
@@ -19,7 +21,7 @@ public class SettingContainer{
   /**
    * ネットワーク中に初期生成するノードの数を指定します
    */
-  private int nodeCount = 20000;
+  private int nodeCount = 5000;
   
   /**
    * ネットワーク中に初期生成する感染状態のノードの数を指定します
@@ -64,13 +66,18 @@ public class SettingContainer{
   private double maxAfterDetectionRate = 0.2;
   
   /**
-   * ノードと隣接する他のノードの数を指定します。<br>
-   * ノート毎に初期状態として設定した範囲の中から隣接ノード数が設定されます。<br>
+   * 生成するグラフの種類を指定します。<br>
+   * それぞれ、完全グラフ、ランダムグラフ、スケールフリーグラフに対応します
+   */
+  private GraphType graphType = GraphType.Random;
+  
+  /**
+   * ノードと隣接する他のノードの平均次数を指定します。<br>
+   * ノート毎に初期状態として設定した次数を元にポアソン分布により、ノード数を決定します<br>
    * このノード数に応じて、重複無しでノードと他のノードとのコネクションが張られます<br>
    * この隣接ノード数は電子メールを媒介とするウィルスを仮定したときに、ユーザーのメールの送信先の数を擬似的に表したものです<br>
    */
-  private int minNeighborNodeCount = 1;
-  private int maxNeighborNodeCount = 30;
+  private int neighborNodeAverage = 10;
   
   /**
    * シミュレーター全体で共通の設定を返します
@@ -207,31 +214,31 @@ public class SettingContainer{
   }
 
   /**
-   * @return the minNeighborNodeCount
+   * @return the graphType
    */
-  public int getMinNeighborNodeCount(){
-    return minNeighborNodeCount;
+  public GraphType getGraphType(){
+    return graphType;
   }
 
   /**
-   * @param minNeighborNodeCount the minNeighborNodeCount to set
+   * @param graphType the graphType to set
    */
-  public void setMinNeighborNodeCount(int minNeighborNodeCount){
-    this.minNeighborNodeCount = minNeighborNodeCount;
+  public void setGraphType(GraphType graphType){
+    this.graphType = graphType;
   }
 
   /**
-   * @return the maxNeighborNodeCount
+   * @return the neighborNodeAverage
    */
-  public int getMaxNeighborNodeCount(){
-    return maxNeighborNodeCount;
+  public int getNeighborNodeAverage(){
+    return neighborNodeAverage;
   }
 
   /**
-   * @param maxNeighborNodeCount the maxNeighborNodeCount to set
+   * @param neighborNodeAverage the neighborNodeAverage to set
    */
-  public void setMaxNeighborNodeCount(int maxNeighborNodeCount){
-    this.maxNeighborNodeCount = maxNeighborNodeCount;
+  public void setNeighborNodeAverage(int neighborNodeAverage){
+    this.neighborNodeAverage = neighborNodeAverage;
   }
   
 }

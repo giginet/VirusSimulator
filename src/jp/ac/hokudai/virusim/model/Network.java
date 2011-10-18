@@ -1,10 +1,8 @@
 package jp.ac.hokudai.virusim.model;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import jp.ac.hokudai.virusim.util.*;
-import java.util.Collections;
 import java.util.Iterator;
 
 /**
@@ -43,18 +41,18 @@ public class Network{
     Iterator<Node> itr = nodes.iterator();
     while(itr.hasNext()){
       Node n = itr.next();
-      int neighborCount = settings.getMinNeighborNodeCount() + r.nextInt()%(settings.getMaxNeighborNodeCount() - settings.getMinNeighborNodeCount());
-      if(neighborCount < 0){
-        neighborCount = 0;
-      }else if(neighborCount > settings.getMaxNeighborNodeCount()){
-        neighborCount = settings.getMaxNeighborNodeCount();
-      }
-      @SuppressWarnings("unchecked")
-      ArrayList<Node> clone = (ArrayList<Node>)nodes.clone();
-      Collections.shuffle(clone);
-      Iterator<Node> cloneItr = clone.iterator();
-      for(int i=0;i<neighborCount;++i){
-        n.getNeighbors().add(cloneItr.next());
+      if(settings.getGraphType() == GraphType.Complete || settings.getGraphType() == GraphType.Random){
+        double p = settings.getGraphType() == GraphType.Complete ? 1 :(double)settings.getNeighborNodeAverage()/(nodes.size() - 1);
+        Iterator<Node> itrNode = nodes.iterator();
+        while(itrNode.hasNext()){
+          Node n2 = itrNode.next();
+          if(r.nextDouble() < p){
+            n.connect(n2);
+          }
+        }
+      }else if(settings.getGraphType() == GraphType.ScaleFree){
+        // スケールフリーグラフの生成
+        // 実装しておいてください
       }
     }
   }
