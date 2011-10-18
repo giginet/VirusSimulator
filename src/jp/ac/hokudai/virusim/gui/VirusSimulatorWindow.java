@@ -5,6 +5,8 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 
 public class VirusSimulatorWindow extends JFrame{
+  private static final long serialVersionUID = 1L;
+
   public VirusSimulatorWindow(String windowName){
     /**
      * @param windowName ウィンドウ表示名
