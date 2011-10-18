@@ -1,5 +1,9 @@
 package jp.ac.hokudai.virusim.simulator;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import jp.ac.hokudai.virusim.gui.VirusSimulatorWindow;
 import jp.ac.hokudai.virusim.model.Network;
 import jp.ac.hokudai.virusim.model.NodeState;
@@ -20,7 +24,7 @@ public class VirusSimulator{
   int time = 0;
   
   /**
-   * Simulatorを初期化します
+   * シミュレーションを実行します
    */
   public VirusSimulator(){
     SettingContainer settings = SettingContainer.getShared();
@@ -30,6 +34,29 @@ public class VirusSimulator{
       if(network.getNodes().getNodeStates(NodeState.Infection).isEmpty()) break;
       network.run();
       ++time;
+    }
+  }
+  
+  /**
+   * シミュレーションを実行して、指定されたファイルに書き出します
+   * @param filename ファイル名
+   */
+  public VirusSimulator(String filename){
+    SettingContainer settings = SettingContainer.getShared();
+    network = new Network(settings.getNodeCount());
+    try{
+      FileWriter fw = new FileWriter(filename);
+      
+      BufferedWriter bw = new BufferedWriter(fw);
+      while(true){
+        bw.write(log() + "\n");
+        if(network.getNodes().getNodeStates(NodeState.Infection).isEmpty()) break;
+        network.run();
+        ++time;
+      }
+      bw.close();
+    }catch(IOException e){
+      System.out.println(e);
     }
   }
   

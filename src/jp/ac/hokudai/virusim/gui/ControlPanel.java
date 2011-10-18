@@ -41,6 +41,15 @@ public class ControlPanel extends JPanel{
       }
     });
     JButton logButton = new JButton("Log");
+    logButton.addActionListener(new ActionListener(){
+      public void actionPerformed(ActionEvent ae){
+        settings.setNodeCount((Integer)nodeSpinner.getValue());
+        settings.setInitialVirusNodeCount((Integer)virusSpinner.getValue());
+        settings.setInitialVaccineRate((Double)vaccineSpinner.getValue());
+        new VirusSimulator("output.txt");
+      }
+    });
+    
     panel.add(addCaption(nodeSpinner, "ノード数"));
     panel.add(addCaption(virusSpinner, "初期ウイルス数"));
     panel.add(addCaption(vaccineSpinner, "初期ワクチン率"));
