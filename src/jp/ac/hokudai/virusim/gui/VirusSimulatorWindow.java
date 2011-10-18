@@ -16,6 +16,6 @@ public class VirusSimulatorWindow extends JFrame{
     ControlPanel cp = new ControlPanel();
     container.add(cp, BorderLayout.EAST);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setSize(600, 500);
+    setSize(800, 500);
   }
 }

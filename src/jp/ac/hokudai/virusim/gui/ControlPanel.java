@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import jp.ac.hokudai.virusim.model.GraphType;
 import jp.ac.hokudai.virusim.simulator.VirusSimulator;
@@ -29,7 +31,8 @@ public class ControlPanel extends JPanel{
     final SettingContainer settings = SettingContainer.getShared();
     JPanel panel = new JPanel();
     panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-    
+
+    /* 実装ヒドいけどなんとかならないですかね */
     final JSpinner nodeSpinner = new JSpinner(new SpinnerNumberModel(settings.getNodeCount(), 1, 100000, 1000));
     final JSpinner virusSpinner = new JSpinner(new SpinnerNumberModel(settings.getInitialVirusNodeCount(), 1, 100000, 5));
     final JSpinner vaccineSpinner = new JSpinner(new SpinnerNumberModel(settings.getInitialVaccineRate(), 0, 1, 0.005));
@@ -40,7 +43,9 @@ public class ControlPanel extends JPanel{
     final JSpinner minAfterDetectionSpinner = new JSpinner(new SpinnerNumberModel(settings.getMinAfterDetectionRate(), 0, 1, 0.005));
     final JSpinner maxAfterDetectionSpinner = new JSpinner(new SpinnerNumberModel(settings.getMaxAfterDetectionRate(), 0, 1, 0.005));    
     final JSpinner neighborAverageSpinner = new JSpinner(new SpinnerNumberModel(settings.getNeighborNodeAverage(), 0, settings.getNodeCount(), 1));
-    final JList graphType = new JList(GraphType.values());
+    final JList graphTypeList = new JList(GraphType.values());
+    final JButton runButton = new JButton("Run");
+    final JButton logButton = new JButton("Log");
     
     nodeSpinner.addChangeListener(new ChangeListener(){
       public void stateChanged(ChangeEvent event){
@@ -110,14 +115,18 @@ public class ControlPanel extends JPanel{
       }
     });
     
-    JButton runButton = new JButton("Run");
+    graphTypeList.addListSelectionListener(new ListSelectionListener(){
+      public void valueChanged(ListSelectionEvent event){
+        settings.setGraphType((GraphType)graphTypeList.getSelectedValue());
+      }
+    });
+    
     runButton.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent ae){
         new VirusSimulator();
       }
     });
     
-    JButton logButton = new JButton("Log");
     logButton.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent ae){
         new VirusSimulator("output.txt");
@@ -134,6 +143,7 @@ public class ControlPanel extends JPanel{
     panel.add(addCaption(minAfterDetectionSpinner, "最低事後発見率"));
     panel.add(addCaption(maxAfterDetectionSpinner, "最高事後発見率"));
     panel.add(addCaption(neighborAverageSpinner, "平均隣接ノード数"));
+    panel.add(addCaption(graphTypeList, "グラフタイプ"));
     panel.add(runButton);
     panel.add(logButton);
     this.add(panel);
