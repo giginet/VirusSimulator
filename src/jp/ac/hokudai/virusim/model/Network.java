@@ -73,7 +73,7 @@ public class Network{
           n.influence();
         }
         // 感染状態の時、一定確率で免疫状態になる
-        if(r.nextDouble() < n.getDetectionRate()){
+        if(r.nextDouble() < (!n.isInfluenced() ? n.getDetectionRate() : n.getAfterDetectionRate())){
           n.immune();
         }
       }

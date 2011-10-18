@@ -51,6 +51,17 @@ public class SettingContainer{
    */
   private final double MIN_DETECTION_RATE = 0.0;
   private final double MAX_DETECTION_RATE = 0.01;
+
+  /**
+   * 他のノードを感染させた後のノードの感染発見率の最小値、最大値を指定します。<br>
+   * ノード毎に初期状態として指定した範囲の中から発見率が設定されます。<br>
+   * 発症時、毎時間免疫状態に移行するかどうかを判定します。<br>
+   * この発見率はユーザーのセキュリティ意識を擬似的に表したものです。<br>
+   * 発見率が高い方が、ウイルスの発症に気付き、対策を取りやすいことを表します<br>
+   * 通常は、発見率より事後発見率の方が高く設定されます。
+   */
+  private final double MIN_AFTER_DETECTION_RATE = 0.1;
+  private final double MAX_AFTER_DETECTION_RATE = 0.2;
   
   /**
    * ノードと隣接する他のノードの数を指定します。<br>
@@ -109,6 +120,19 @@ public class SettingContainer{
    */
   public double getMaxDetectionRate(){
     return MAX_DETECTION_RATE;
+  }
+  
+  /**
+   * @return the mIN_AFTER_DETECTION_RATE
+   */
+  public double getMinAfterDetectionRate(){
+    return MIN_AFTER_DETECTION_RATE;
+  }
+  /**
+   * @return the mAX_AFTER_DETECTION_RATE
+   */
+  public double getMaxAfterDetectionRate(){
+    return MAX_AFTER_DETECTION_RATE;
   }
   /**
    * @return the mIN_NEIGHBOR_NODE_COUNT
