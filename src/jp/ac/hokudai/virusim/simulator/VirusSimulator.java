@@ -35,6 +35,7 @@ public class VirusSimulator{
       network.run();
       ++time;
     }
+    System.out.println("----------------------------");
   }
   
   /**
@@ -58,6 +59,7 @@ public class VirusSimulator{
     }catch(IOException e){
       System.out.println(e);
     }
+    System.out.println("----------------------------");
   }
   
   /**
