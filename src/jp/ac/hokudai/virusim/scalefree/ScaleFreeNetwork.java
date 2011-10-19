@@ -34,6 +34,7 @@ public class ScaleFreeNetwork extends Network {
 				nodeState = NodeState.Infection;
 			} else if (rand.nextDouble() < settings.getInitialVaccineRate()) {
 				nodeState = NodeState.Immune;
+				++countInitImmute;
 			}
 
 			Node node = new Node(nodeState);
