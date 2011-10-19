@@ -58,7 +58,12 @@ public class VirusSimulator{
    */
   public VirusSimulator(String filename){
     SettingContainer settings = SettingContainer.getShared();
-    network = new Network(settings.getNodeCount());
+    
+    if(settings.getGraphType() != GraphType.ScaleFree){
+      network = new Network(settings.getNodeCount());
+    }else{
+      network = new ScaleFreeNetwork(settings.getNodeCount());
+    }
     try{
       FileWriter fw = new FileWriter(filename);
       
