@@ -18,6 +18,10 @@ public class Network{
   
   protected NodeList nodes;
   
+  private int countInfluencedToImmute = 0 ;
+  private int countCrisisToImmute = 0;
+  private int countInitImmute = 0;
+  
   public Network(){}
   /**
    * ネットワークを初期化します
@@ -34,6 +38,7 @@ public class Network{
         ns = NodeState.Infection;
       }else if(r.nextDouble() < settings.getInitialVaccineRate()){
         ns = NodeState.Immune;
+        ++countInitImmute;
       }
       Node n = new Node(ns);
       nodes.add(n);
@@ -72,11 +77,32 @@ public class Network{
           n.influence();
         }
         // 感染状態の時、一定確率で免疫状態になる
-        if(r.nextDouble() < (!n.isInfluenced() ? n.getDetectionRate() : n.getAfterDetectionRate())){
-          n.immune();
+        
+        if(n.isInfluenced()){
+        	if(r.nextDouble() < n.getAfterDetectionRate()){
+        		n.immune();
+        		++countCrisisToImmute;
+        	}
+        } else {
+        	if(r.nextDouble() < n.getDetectionRate()){
+        		n.immune();
+        		++countInfluencedToImmute;
+        	}
         }
       }
     }
+  }
+  
+  public int getCountInfluencedToImmute(){
+	  return countInfluencedToImmute;
+  }
+  
+  public int getCountCrisisToImmute(){
+	  return countCrisisToImmute;
+  }
+  
+  public int getInitImmute(){
+	  return countInitImmute;
   }
 
   /**
