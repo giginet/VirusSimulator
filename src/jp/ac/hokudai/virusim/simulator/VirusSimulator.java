@@ -4,14 +4,13 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import jp.ac.hokudai.virusim.gui.GraphPanel;
 import jp.ac.hokudai.virusim.gui.VirusSimulatorWindow;
+import jp.ac.hokudai.virusim.model.GraphType;
 import jp.ac.hokudai.virusim.model.Network;
 import jp.ac.hokudai.virusim.model.NodeState;
+import jp.ac.hokudai.virusim.scalefree.ScaleFreeNetwork;
 import jp.ac.hokudai.virusim.util.SettingContainer;
-/**
- *  VirusSimulator.java 
- *  created by giginet on 2011/10/06
- */
 
 
 /**
@@ -21,6 +20,8 @@ import jp.ac.hokudai.virusim.util.SettingContainer;
 public class VirusSimulator{
   
   private Network network;
+  private static VirusSimulatorWindow window;
+  private static GraphPanel panel;
   int time = 0;
   
   /**
@@ -28,7 +29,12 @@ public class VirusSimulator{
    */
   public VirusSimulator(){
     SettingContainer settings = SettingContainer.getShared();
-    network = new Network(settings.getNodeCount());
+    
+    if(settings.getGraphType() != GraphType.ScaleFree){
+      network = new Network(settings.getNodeCount());
+    }else{
+      network = new ScaleFreeNetwork(settings.getNodeCount());
+    }
     while(true){
       System.out.println(log());
       if(network.getNodes().getNodeStates(NodeState.Infection).isEmpty()) break;
@@ -36,6 +42,14 @@ public class VirusSimulator{
       ++time;
     }
     System.out.println("----------------------------");
+    
+/*  グラフ表示 実用的にゴミ。  
+    if(panel != null){ window.remove(panel); }
+    
+    panel = new GraphPanel(network); 
+    window.getContentPane().add(panel, BorderLayout.WEST);
+    window.setVisible(true);
+*/
   }
   
   /**
@@ -77,7 +91,7 @@ public class VirusSimulator{
    * @param args
    */
   public static void main(String[] args){
-    VirusSimulatorWindow window = new VirusSimulatorWindow("VirusSimulator");
+    window = new VirusSimulatorWindow("VirusSimulator");
     window.setVisible(true);
   }
 

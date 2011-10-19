@@ -16,8 +16,9 @@ import java.util.Iterator;
  */
 public class Network{
   
-  private NodeList nodes;
+  protected NodeList nodes;
   
+  public Network(){}
   /**
    * ネットワークを初期化します
    * @param nodeCount 初期ノード数
@@ -52,7 +53,7 @@ public class Network{
         }
       }else if(settings.getGraphType() == GraphType.ScaleFree){
         // スケールフリーグラフの生成
-        // 実装しておいてください
+    	// -> アルゴリズム的にここに実装するのは難しかった…
       }
     }
   }
